@@ -10,15 +10,19 @@ output objects.  It uses an Aho-Corasick tree
 == FEATURES:
 
 The core KeywordProspector engine has the following properties:
-* Once a tree is built, matching against the tree is o(n) where n is the length of your text.
-* Arbitrary output objects can be associated with any keyword or set of keywords.
+* Once a tree is built, matching against the tree is o(n) where n is the length
+  of your text, regardless of how mane keywords you have in the tree.
+* Arbitrary output objects can be associated with any keyword or set of
+  keywords.
 
 KeywordLinker can be used to create links to designated url's:
 * You can specify a single keyword to associate with a url.
 * You can specify an array of keywords to associate with a url.
-* Each keyword or group of keywords will be linked only once to the url provided.
+* Each keyword or group of keywords will be linked only once to the url
+  provided.
 * Hyperlinks are not created within existing hyperlinks.
-* Hyperlinks are not generated anywhere they would be illegal in HTML, such as within attribute values.
+* Hyperlinks are not generated anywhere they would be illegal in HTML, such as
+  within attribute values.
 
 == SYNOPSIS:
 

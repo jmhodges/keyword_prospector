@@ -4,29 +4,71 @@
 
 == DESCRIPTION:
 
-FIX (describe your package)
+KeywordProspector is a gem for associating keywords in text with arbitrary
+output objects.  It uses an Aho-Corasick tree
 
-== FEATURES/PROBLEMS:
+== FEATURES:
 
-* FIX (list of features or problems)
+The core KeywordProspector engine has the following properties:
+* Once a tree is built, matching against the tree is o(n) where n is the length of your text.
+* Arbitrary output objects can be associated with any keyword or set of keywords.
+
+KeywordLinker can be used to create links to designated url's:
+* You can specify a single keyword to associate with a url.
+* You can specify an array of keywords to associate with a url.
+* Each keyword or group of keywords will be linked only once to the url provided.
+* Hyperlinks are not created within existing hyperlinks.
+* Hyperlinks are not generated anywhere they would be illegal in HTML, such as within attribute values.
 
 == SYNOPSIS:
 
-  FIX (code sample of usage)
+Use KeywordLinker to create links in HTML text.  KeywordLinker will link only
+the first alternative that appears in text:
 
-== REQUIREMENTS:
+  require 'keyword_linker'
 
-* FIX (list of requirements)
+  linker = KeywordLinker.new
+  linker.add_url("http://www.latimes.com", ["L.A. Times", "Los Angeles Times"])
+  linker.link_text("'L.A. Times' or 'Los Angeles Times'?")
+  => "'<a href=\"http://www.latimes.com\">L.A. Times</a>' or 'Los Angeles Times'?"
+
+  linker.link_text("'Los Angeles Times' or 'L.A. Times'?")
+  => "'<a href=\"http://www.latimes.com\">Los Angeles Times</a>' or 'L.A. Times'?"
+
+
+You can provide html options when adding url's:
+
+  linker = KeywordLinker.new
+  linker.add_url("http://www.latimes.com", "Los Angeles Times",
+                  :title => "Visit the Los Angeles Times")
+  linker.add_url("http://www.google.com", ["Google", "The Google"],
+                  :title => "Go check it out on The Google!")
+
+  linker.link_text("Do you prefer The Google or the Los Angeles Times?")
+  => "Do you prefer <a href=\"http://www.google.com\" title=\"Go check it out on The Google!\">The Google</a> or the <a href=\"http://www.latimes.com\" title=\"Visit the Los Angeles Times\">Los Angeles Times</a>?"
+
+== DEPENDENCIES:
+
+* Hpricot
 
 == INSTALL:
 
-* FIX (sudo gem install, anything else)
+sudo gem install keyword_prospector
+
+== AUTHOR:
+
+Alf Mikula <amikula@gmail.com>
+
+== ACKNOWLEDGEMENTS:
+
+Thanks to David Johnson for telling me about the Aho-Corasick algorithm, and
+for providing the original Aho-Corasick Ruby implementation.
 
 == LICENSE:
 
 (The MIT License)
 
-Copyright (c) 2008 FIXME full name
+Copyright (c) 2008 Los Angeles Times
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the

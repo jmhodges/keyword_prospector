@@ -1,11 +1,12 @@
 = keyword_prospector
 
-* FIX (url)
+* http://github.com/latimes/keyword_prospector
 
 == DESCRIPTION:
 
 KeywordProspector is a gem for associating keywords in text with arbitrary
-output objects.  It uses an Aho-Corasick tree
+output objects.  It uses an Aho-Corasick tree to provide matching that scales
+linearly with the length of the text, regardless of the number of keywords.
 
 == FEATURES:
 

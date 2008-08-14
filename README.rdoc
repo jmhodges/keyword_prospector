@@ -73,7 +73,7 @@ sudo gem install keyword_prospector
 
 == AUTHOR:
 
-Alf Mikula <amikula@gmail.com>
+Alf Mikula [amikula@gmail.com]
 
 == ACKNOWLEDGEMENTS:
 

@@ -31,6 +31,10 @@ KeywordLinker can be used to create links to designated url's:
 
 == SYNOPSIS:
 
+Note: Because I want my README file to work on github, I've replaced all the
+less than and greater than signs with '[' and ']' respectively.  KeywordLinker
+does produce valid HTML.
+
 Use KeywordLinker to create links in HTML text.  KeywordLinker will link only
 the first alternative that appears in text:
 
@@ -40,11 +44,11 @@ the first alternative that appears in text:
   linker.add_url("http://www.latimes.com", ["L.A. Times", "Los Angeles Times"])
   linker.link_text("'L.A. Times' or 'Los Angeles Times'?")
 
-  OUTPUT: "'<a href=\"http://www.latimes.com\">L.A. Times</a>' or 'Los Angeles Times'?"
+  OUTPUT: "'[a href=\"http://www.latimes.com\"]L.A. Times[/a]' or 'Los Angeles Times'?"
 
   linker.link_text("'Los Angeles Times' or 'L.A. Times'?")
 
-  OUTPUT: "'<a href=\"http://www.latimes.com\">Los Angeles Times</a>' or 'L.A. Times'?"
+  OUTPUT: "'[a href=\"http://www.latimes.com\"]Los Angeles Times[/a]' or 'L.A. Times'?"
 
 
 You can provide html options when adding url's:
@@ -57,7 +61,7 @@ You can provide html options when adding url's:
 
   linker.link_text("Do you prefer The Google or the Los Angeles Times?")
 
-  OUTPUT: "Do you prefer <a href=\"http://www.google.com\" title=\"Go check it out on The Google!\">The Google</a> or the <a href=\"http://www.latimes.com\" title=\"Visit the Los Angeles Times\">Los Angeles Times</a>?"
+  OUTPUT: "Do you prefer [a href=\"http://www.google.com\" title=\"Go check it out on The Google!\"]The Google[/a] or the [a href=\"http://www.latimes.com\" title=\"Visit the Los Angeles Times\"]Los Angeles Times[/a]?"
 
 == DEPENDENCIES:
 

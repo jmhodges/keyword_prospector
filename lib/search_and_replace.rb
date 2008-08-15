@@ -3,16 +3,21 @@
 # 
 require 'keyword_prospector'
 
+# A class for replacing arbitrary strings in text.  Uses a KeywordProspector
+# tree for fast matching.
 class SearchAndReplace
   def initialize
     @dl = KeywordProspector.new
     @tree_initialized = false
   end
 
+  # Add a replacement to the tree.
   def add_replacement(original, replacement)
     @dl.add(original, replacement)
   end
 
+  # Initialize the tree.  Call this only once after all replacements have been
+  # added.
   def initialize_tree
     unless @tree_initialized
       @dl.construct_fail
@@ -20,6 +25,8 @@ class SearchAndReplace
     end
   end
 
+  # Search and replace on the provided text.  Returns the original text with
+  # all replacements substituted.  This method is case insensitive.
   def replace_text(text)
     unless @tree_initialized
       initialize_tree

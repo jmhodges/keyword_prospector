@@ -3,13 +3,18 @@
 # 
 require 'enumerator'
 
-# Manages a list of lookup objects, prioritizing the matches from the later
+# Manages a list of lookup objects, prioritizing the matches from the earlier
 # objects over matches from previous objects in cases of exact collisions or
 # cases where two matches have the same length.  Otherwise, when there are
 # overlaps, the longest match always wins.
+#
+# A lookup object is anything with a process method that accepts text and
+# returns an array of Match objects.
 class LookupChain
+  # Returns the array of lookup objects used internally.
   attr_reader :lookups
 
+  # Initialize with an array of lookup objects.
   def initialize(*lookups)
     @lookups = []
     lookups.flatten!
@@ -20,12 +25,17 @@ class LookupChain
     end
   end
 
+  # Add a lookup object to the end of the chain.
   def <<(lookup)
     check_lookup(lookup)
 
     self.lookups << lookup
   end
 
+  # Process matches in the text in all of the lookup objects in the chain.
+  # If there are overlaps, it returns the longest match.  If there are
+  # collisions (exact matches), it prefers the match from the object earliest
+  # in the list.
   def process(text)
     matches = []
 
@@ -59,6 +69,7 @@ class LookupChain
   end
 
   private
+  # Verify that the object provided is a valid lookup object.
   def check_lookup(lookup)
     raise ArgumentError.new("lookup objects must respond to process method") unless lookup.respond_to?(:process)
   end

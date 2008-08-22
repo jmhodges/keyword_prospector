@@ -92,10 +92,7 @@ class KeywordProspector
     position = Position.new(0, 0)
     bytes.each_byte do |a|
       state = state.transition(a, position)
-      if state.keyword && ((position.begin == 0 ||
-                   KeywordProspector.word_delimiter?(bytes[position.begin-1])) &&
-                   (position.end == bytes.length ||
-                    KeywordProspector.word_delimiter?(bytes[position.end])))
+      if state.keyword && is_position_around_word?(bytes, position)
         match = Match.new(state.keyword, position.begin, position.end, state.output)
 
         # do something with the found item
@@ -114,6 +111,19 @@ class KeywordProspector
     end
 
     return retval
+  end
+  
+  def is_position_around_word?(bytes, position)
+    position_starts_word?(bytes, position) && 
+    position_after_word_end?(bytes, position)
+  end
+  
+  def position_starts_word?(bytes, position)
+    position.begin == 0 || KeywordProspector.word_delimiter?(bytes[position.begin-1])
+  end
+  
+  def position_after_word_end?(bytes, position)
+    (position.end == bytes.length || KeywordProspector.word_delimiter?(bytes[position.end]))
   end
   
   # Filters overlaps from an array of results.  If two results overlap, the

@@ -4,6 +4,7 @@
 require File.dirname(__FILE__) + '/spec_helper'
 require 'lookup_chain'
 require 'match'
+include KeywordUtilities
 
 describe LookupChain do
   before(:each) do

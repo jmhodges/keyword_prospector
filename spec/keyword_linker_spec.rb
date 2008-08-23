@@ -3,6 +3,7 @@
 # 
 require File.dirname(__FILE__) + '/spec_helper'
 require 'keyword_linker'
+include KeywordUtilities
 
 describe KeywordLinker do
   before(:each) do

@@ -3,6 +3,7 @@
 # 
 require File.dirname(__FILE__) + '/spec_helper'
 require 'search_and_replace'
+include KeywordUtilities
 
 describe SearchAndReplace do
   before(:each) do

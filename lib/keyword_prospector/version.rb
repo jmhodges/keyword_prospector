@@ -1,4 +1,4 @@
-class KeywordProspector
+module KeywordUtilities
   module VERSION #:nodoc:
     MAJOR = 0
     MINOR = 8

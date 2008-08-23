@@ -34,7 +34,7 @@ end
 REV = nil
 # UNCOMMENT IF REQUIRED:
 # REV = YAML.load(`svn info`)['Revision']
-VERS = KeywordProspector::VERSION::STRING + (REV ? ".#{REV}" : "")
+VERS = KeywordUtilities::VERSION::STRING + (REV ? ".#{REV}" : "")
 RDOC_OPTS = ['--quiet', '--title', 'keyword_prospector documentation',
     "--opname", "index.html",
     "--line-numbers",

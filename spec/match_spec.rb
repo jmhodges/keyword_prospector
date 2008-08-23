@@ -3,6 +3,7 @@
 # 
 require File.dirname(__FILE__) + '/spec_helper'
 require 'match'
+include KeywordUtilities
 
 describe Match do
   describe "spaceship operator" do

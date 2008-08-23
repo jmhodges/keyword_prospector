@@ -3,6 +3,7 @@
 # 
 require File.dirname(__FILE__) + '/spec_helper'
 require 'set'
+include KeywordUtilities
 
 describe KeywordProspector do
   it "should match keywords in text, respecting word boundaries" do

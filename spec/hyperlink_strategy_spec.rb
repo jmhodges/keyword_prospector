@@ -3,6 +3,7 @@
 # 
 require File.dirname(__FILE__) + '/spec_helper'
 require 'hyperlink_strategy'
+include KeywordUtilities
 
 describe HyperlinkStrategy do
   before :each do

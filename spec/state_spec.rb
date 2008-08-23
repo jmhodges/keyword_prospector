@@ -4,6 +4,8 @@
 require File.dirname(__FILE__) + '/spec_helper'
 require 'state'
 
+include KeywordUtilities
+
 describe State do
   before(:each) do
     @state = State.new(:char)
